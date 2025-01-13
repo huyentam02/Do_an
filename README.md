@@ -2,7 +2,7 @@
 
 This is a **Car Rental Web Application** built with **Next.js** and deployed on **Vercel**. The app is designed for customers and vehicle providers to facilitate efficient car rental management.  
 
-**Live Demo:** [da01-rent-car.vercel.app](https://do-knjgt01ba-huyentams-projects.vercel.app)  
+**Live Demo:** [do-an-alpha.vercel.app](https://do-knjgt01ba-huyentams-projects.vercel.app)  
 
 ---
 
@@ -50,7 +50,7 @@ Contributions are welcome! If you encounter bugs or have feature suggestions, pl
 
 ---
 
-Thank you for exploring the **Car Rental Web Application**! Check it out live at [da01-rent-car.vercel.app](https://do-knjgt01ba-huyentams-projects.vercel.app).  
+Thank you for exploring the **Car Rental Web Application**! Check it out live at [do-an-alpha.vercel.app](https://do-knjgt01ba-huyentams-projects.vercel.app).  
 
 <!-- pnpm run build -->
 <!-- pnpm run start -->
