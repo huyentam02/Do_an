@@ -12,6 +12,7 @@ interface Props {
 	userId: string;
 	setIsRead: React.Dispatch<React.SetStateAction<boolean>>;
 	isLoading: boolean;
+	refetch: () => void;
 }
 
 export default function NotificationButton({
@@ -20,12 +21,19 @@ export default function NotificationButton({
 	userId,
 	setIsRead,
 	isLoading,
+	refetch
 }: Props) {
 	
 	const onReadNotification = async () => {
 		await handleReadNotification(userId);
 		setIsRead(true);
 	};
+
+	const onRefreshNotification = () => {
+		refetch();
+	};
+
+	
 
 	return (
 		<Popover width={400} position='bottom-end' withArrow shadow='md'>
@@ -40,9 +48,14 @@ export default function NotificationButton({
 			<Popover.Dropdown className='!p-2'>
 				<Title order={4} className='flex items-center justify-between'>
 					Notifications
+					<div className='flex items-center gap-2'>
+					<Button onClick={onRefreshNotification} size='xs' variant='outline'>
+						Refresh
+					</Button>
 					<Button onClick={onReadNotification} size='xs' variant='outline'>
 						Mark as read
 					</Button>
+					</div>
 				</Title>
 				<Divider className='my-2' />
 				<div className='flex flex-col gap-2 md:max-h-[50vh] overflow-y-auto'>

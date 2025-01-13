@@ -10,7 +10,7 @@ interface Props {
 }
 export const ReviewCard = ({ review, userId }: Props) => {
 	const name =
-		review.users!.id == userId
+		review.user_id == userId
 			? 'You'
 			: `${review.users?.firstName} ${review.users?.lastName}`;
 	const pathName = usePathname();

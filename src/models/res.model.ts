@@ -99,9 +99,13 @@ export interface IResReviewProps {
 	dislikes: number;
 	car_id: number;
 	providers?: IResProviderProps;
-	users?: IResUserProps;
+	users: {
+		lastName: string;
+		firstName: string;
+	};
 	cars?: IResCarProps;
 	provider_id?: string
+	user_id: string
 }
 
 export interface IResNotificationProps {

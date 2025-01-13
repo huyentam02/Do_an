@@ -1,4 +1,5 @@
 'use client';
+
 import { useAuthContext } from '@/context/AuthContext';
 import { CarContextProvider } from '@/context/CarContext';
 import { useProviderDetails } from '@/hooks/useProviderDetails';
@@ -58,10 +59,12 @@ interface DashboardProps {
 	children: ReactNode;
 }
 export const DashboardLayout = ({ children }: DashboardProps) => {
-	const { user, logOut } = useAuthContext();
-	const { notifications, is_read, isLoading } = useNotifications(
+	const { user, logOut, session } = useAuthContext();
+	const { notifications, is_read, isLoading, refetch, isFetching } = useNotifications(
 		user?.id || ''
 	);
+
+	const [isMounted, setIsMounted] = useState(false);
 
 	const [opened, setOpened] = useState(false);
 	const theme = useMantineTheme();
@@ -72,6 +75,12 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 	useEffect(() => {
 		setIsRead(is_read ?? false);
 	}, [is_read]);
+
+	useEffect(() => {
+		if (user?.id) {
+			setIsMounted(true);
+		}
+	}, [user?.id]);
 
 	const handleSignOut = async () => {
 		await logOut();
@@ -116,7 +125,8 @@ export const DashboardLayout = ({ children }: DashboardProps) => {
 									userId={user?.id}
 									is_read={isRead}
 									setIsRead={setIsRead}
-									isLoading={isLoading}
+									isLoading={isLoading || isFetching}
+									refetch={refetch}
 								/>
 							)}
 						</div>

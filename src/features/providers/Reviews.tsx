@@ -5,8 +5,9 @@ import { Card, Divider, Text, Title } from '@mantine/core';
 
 interface Props {
 	reviews: IResReviewProps[];
+	userId: string;
 }
-export const Reviews = ({ reviews }: Props) => {
+export const Reviews = ({ reviews, userId }: Props) => {
 	return (
 		<div>
 			<Divider
@@ -19,7 +20,7 @@ export const Reviews = ({ reviews }: Props) => {
 			/>
 			<div className='flex flex-col gap-4'>
 				{reviews.map((review) => (
-					<ReviewCard key={review.id} review={review} userId='' />
+					<ReviewCard key={review.id} review={review} userId={userId} />
 				))}
 			</div>
 

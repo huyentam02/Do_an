@@ -81,7 +81,7 @@ export const Reviews = ({ reviews: _reviews, car_id, provider_id }: Props) => {
 					<ReviewCard
 						key={review.id}
 						review={review}
-						userId={review.users?.id}
+						userId={session?.user.id}
 					/>
 				))}
 			</div>

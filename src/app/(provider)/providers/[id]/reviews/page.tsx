@@ -16,7 +16,7 @@ const ProviderReviewsPage = async () => {
   return (
     <>
       <DashboardLayout>
-        <Reviews reviews={reviews} />
+        <Reviews reviews={reviews} userId={session.user.id} />
       </DashboardLayout>
     </>
   );

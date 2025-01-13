@@ -14,14 +14,21 @@ import Link from 'next/link';
 export const NavigationMobile = () => {
 	const [opened, { close, toggle }] = useDisclosure(false);
 	const { session } = useAuthContext();
-	const { notifications, is_read, isLoading } = useNotifications(
+	const { notifications, is_read, isLoading, refetch, isFetching } = useNotifications(
 		session?.user.id
 	);
 	const [isRead, setIsRead] = useState(is_read ?? true);
+	const [_, setIsMounted] = useState(false);
 
 	useEffect(() => {
 		setIsRead(is_read ?? true);
 	}, [isRead]);
+
+	useEffect(() => {
+		if (session?.user.id) {
+			setIsMounted(true);
+		}
+	}, [session?.user.id]);
 
 	return (
 		<>
@@ -58,7 +65,8 @@ export const NavigationMobile = () => {
 						is_read={isRead}
 						userId={session.user.id}
 						setIsRead={setIsRead}
-						isLoading={isLoading}
+						isLoading={isLoading || isFetching}
+						refetch={refetch}
 					/>
 				)}
 				<Burger
