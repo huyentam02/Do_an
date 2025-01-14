@@ -17,7 +17,7 @@ export const getReviewsById = async (
 	let { data: reviews } = await supabase
 		.from('reviews')
 		.select(
-			'id, created_at, rate, comment, likes, dislikes, car_id, providers(*), users(*)'
+			'id, created_at, rate, comment, likes, dislikes, car_id, providers(*), user_id, users(*)'
 		)
 		.eq('car_id', car_id);
 
@@ -46,7 +46,7 @@ export const createReview = async (
 			likes: 1,
 		})
 		.select(
-			'provider_id, id, created_at, rate, comment, likes, dislikes, car_id, users(id, firstName, lastName), cars(make, model)'
+			'provider_id, id, created_at, rate, comment, likes, dislikes, car_id, user_id, users(id, firstName, lastName), cars(make, model)'
 		)
 		.single();
 
@@ -66,5 +66,5 @@ export const createReview = async (
 	// update is read
 	await supabase.from('users').update({ is_read: false }).eq('id', provider_id);
 
-	return review as IResReviewProps;
+	return review as any as IResReviewProps;
 };
